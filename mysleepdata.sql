@@ -4,17 +4,28 @@ USE SLEEP;
 
 ##Using Table Data Import Wizard, import my sleep data into Table 'mysleepdata'
 #check the new table and columns
-SELECT * FROM mysleepdata_formatted;
+SELECT * 
+FROM mysleepdata_formatted;
 
 #Rename TimeAsleep column as HoursAsleep and sort from longest sleep
 #Which nights did I get the most sleep?
-SELECT StartDate, StartTime, EndDate, EndTime, ROUND(TimeAsleep/3600, 3) AS HoursAsleep, SleepQuality
+SELECT StartDate, 
+	StartTime, 
+    EndDate, 
+    EndTime, 
+    ROUND(TimeAsleep/3600, 3) AS HoursAsleep, 
+    SleepQuality
 FROM mysleepdata_formatted
 ORDER BY HoursAsleep DESC
 LIMIT 10;
 
 #Which nights did I have the least amount of sleep?
-SELECT StartDate, StartTime, EndDate, EndTime, ROUND(TimeAsleep/3600, 3) AS HoursAsleep, SleepQuality
+SELECT StartDate, 
+	StartTime, 
+    EndDate, 
+    EndTime, 
+    ROUND(TimeAsleep/3600, 3) AS HoursAsleep, 
+    SleepQuality
 FROM mysleepdata_formatted
 WHERE ROUND(TimeAsleep/3600, 3) > 1
 ORDER BY HoursAsleep
@@ -25,14 +36,24 @@ SELECT AVG(TimeAsleep/3600) AS HoursAsleep
 FROM mysleepdata_formatted;
 
 #Which nights did I have the best quality of nights sleep?
-SELECT StartDate, StartTime, EndDate, EndTime, ROUND(TimeAsleep/3600, 3) AS HoursAsleep, SleepQuality 
+SELECT StartDate, 
+	StartTime, 
+    EndDate, 
+    EndTime, 
+    ROUND(TimeAsleep/3600, 3) AS HoursAsleep, 
+    SleepQuality 
 FROM mysleepdata_formatted
 WHERE SleepQuality > '95%' 
 ORDER BY SleepQuality DESC
 LIMIT 10;
 
 #Which nights did I have the worst quality of nights sleep?
-SELECT StartDate, StartTime, EndDate, EndTime, ROUND(TimeAsleep/3600, 3) AS HoursAsleep, SleepQuality 
+SELECT StartDate, 
+	StartTime, 
+    EndDate, 
+    EndTime, 
+    ROUND(TimeAsleep/3600, 3) AS HoursAsleep, 
+    SleepQuality 
 FROM mysleepdata_formatted
 WHERE SleepQuality < '65%' 
 	AND SleepQuality != '100%' 
